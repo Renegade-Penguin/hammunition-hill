@@ -157,9 +157,11 @@ jobs:
       - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
         with:
           node-version: "22"
-      - run: |
-          pip install --disable-pip-version-check --require-hashes -r requirements/runtime.txt
-          pip install --disable-pip-version-check --no-deps .
+      # The dependencies come from the hash-checked lock. The project itself is
+      # run from the checkout (PYTHONPATH) instead of `pip install .`, which
+      # cannot be hash-pinned and would fetch an unpinned build backend.
+      # Wheel installs are exercised by the debian job and the Dockerfile.
+      - run: pip install --disable-pip-version-check --require-hashes -r requirements/runtime.txt
       - name: install playwright and chromium
         # Both are needed and they are different things: `npm ci` puts the
         # module, at the version and hash package-lock.json pins, where the
@@ -173,6 +175,8 @@ jobs:
         # The checks pytest cannot do: that the panels actually load, that no
         # module throws, and that nothing on the page tries to reach a host the
         # CSP did not name.
+        env:
+          PYTHONPATH: ${{ github.workspace }}/src
         run: python .github/scripts/render_check.py
       - name: upload screenshots
         if: always()
@@ -262,19 +266,23 @@ jobs:
       - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
         with:
           python-version: "3.13"
-      - run: |
-          pip install --disable-pip-version-check --require-hashes -r requirements/runtime.txt
-          pip install --disable-pip-version-check --no-deps .
+      # The dependencies come from the hash-checked lock. The project itself is
+      # run from the checkout (PYTHONPATH) instead of `pip install .`, which
+      # cannot be hash-pinned and would fetch an unpinned build backend.
+      # Wheel installs are exercised by the debian job and the Dockerfile.
+      - run: pip install --disable-pip-version-check --require-hashes -r requirements/runtime.txt
       - name: fetch and parse every source in the example config
         # --fetch, not a bare check: resolving a name proves DNS works, which
         # is not the thing that rots. An upstream keeps its hostname and its
         # certificate for years while renaming a JSON field, and the only
         # signal is a panel that quietly goes empty. This runs the real
         # client, guard and parser once per source.
+        env:
+          PYTHONPATH: ${{ github.workspace }}/src
         run: |
           cd "$GITHUB_WORKSPACE"
           cp config.example.toml config.toml
-          hamhill check --config config.toml --fetch
+          python -m hammunition_hill check --config config.toml --fetch
 
   # The local aggregate: the shared `ci / CI green` covers only what the shared
   # workflow ran, and branch protection needs the local jobs counted too.

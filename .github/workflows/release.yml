@@ -30,7 +30,7 @@ permissions:
 
 jobs:
   package:
-    uses: ChiefGyk3D/git-your-ship-together/.github/workflows/artifact-release.yml@faba0b7d1ab65e9033bef1acfa93d6d57b5808c0 # v1.21.0
+    uses: ChiefGyk3D/git-your-ship-together/.github/workflows/artifact-release.yml@8fdb8d106b11aae0f37e893bb57e9bd8e8b0e7b7 # v1.24.0
     permissions:
       # The only writes this repository's CI does outside Security's SARIF
       # upload. tests/test_workflows.py holds the list. The shared workflow

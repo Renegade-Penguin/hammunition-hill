@@ -111,7 +111,7 @@ jobs:
       extra-allowed-endpoints: pypi.org:443 files.pythonhosted.org:443 auth.docker.io:443 registry-1.docker.io:443 production.cloudfront.docker.com:443 deb.debian.org:80
 
   container:
-    uses: ChiefGyk3D/git-your-ship-together/.github/workflows/container-release.yml@faba0b7d1ab65e9033bef1acfa93d6d57b5808c0 # v1.21.0
+    uses: ChiefGyk3D/git-your-ship-together/.github/workflows/container-release.yml@8fdb8d106b11aae0f37e893bb57e9bd8e8b0e7b7 # v1.24.0
     permissions:
       contents: read
       packages: write

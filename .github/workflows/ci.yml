@@ -40,7 +40,7 @@ env:
 
 jobs:
   ci:
-    uses: ChiefGyk3D/git-your-ship-together/.github/workflows/python-ci.yml@6f40107c2e05483f485452991e422f7f63886000 # v1.25.1
+    uses: ChiefGyk3D/git-your-ship-together/.github/workflows/python-ci.yml@f344c638e1316d43514a41e4a22f172583c271fc # v1.26.0
     permissions:
       contents: read
       id-token: write   # Doppler OIDC, when an identity is configured; python-ci keeps it off the test job
@@ -115,7 +115,7 @@ jobs:
     # how to find) and long on the weekly schedule above (600 s each, which is
     # where new findings come from). It is the same job either way, so there is
     # one place to read the targets' results and one name for the merge gate.
-    uses: ChiefGyk3D/git-your-ship-together/.github/workflows/python-fuzz.yml@6f40107c2e05483f485452991e422f7f63886000 # v1.25.1
+    uses: ChiefGyk3D/git-your-ship-together/.github/workflows/python-fuzz.yml@f344c638e1316d43514a41e4a22f172583c271fc # v1.26.0
     permissions:
       contents: read
     with:
@@ -131,7 +131,7 @@ jobs:
 
   shell:
     # bash-ci.yml over the packaging scripts (build.sh, postinst, prerm).
-    uses: ChiefGyk3D/git-your-ship-together/.github/workflows/bash-ci.yml@6f40107c2e05483f485452991e422f7f63886000 # v1.25.1
+    uses: ChiefGyk3D/git-your-ship-together/.github/workflows/bash-ci.yml@f344c638e1316d43514a41e4a22f172583c271fc # v1.26.0
     permissions:
       contents: read
     with:

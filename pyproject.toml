@@ -95,4 +95,9 @@ ignore = ["S104"]  # binding 0.0.0.0 is a deliberate, flag-gated choice
 
 [tool.pytest.ini_options]
 asyncio_mode = "auto"
+# Explicit, so pytest-asyncio 1.x does not warn at configure time (which
+# -W error::DeprecationWarning in CI turns into an INTERNALERROR). No test
+# shares an async fixture across tests, so function scope is the behavior
+# the suite already had.
+asyncio_default_fixture_loop_scope = "function"
 testpaths = ["tests"]

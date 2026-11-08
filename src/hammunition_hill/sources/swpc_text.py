@@ -63,7 +63,9 @@ class NoaaScalesSource:
                 entry = {}
             try:
                 number = int(entry.get("Scale") or 0)
-            except (TypeError, ValueError):
+            except (TypeError, ValueError, OverflowError):
+                # OverflowError: JSON `1e999` parses to infinity and int() of
+                # that raises it.
                 number = 0
             scales[letter] = {
                 "scale": number,

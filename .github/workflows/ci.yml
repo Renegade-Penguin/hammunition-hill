@@ -52,7 +52,7 @@ jobs:
       # not exotic here; a shack laptop is as likely to be a Mac, and that is
       # where path and filesystem assumptions surface. Every version runs on
       # every runner: the shared workflow takes a cross product.
-      runners: '["ubuntu-24.04", "ubuntu-24.04-arm", "macos-14"]'
+      runners: '["ubuntu-24.04", "ubuntu-24.04-arm", "macos-15"]'
       install-command: pip install --disable-pip-version-check -e ".[dev]"
       # -W error promotes DeprecationWarnings to failures. A warning ignored
       # for three releases becomes a breakage on the fourth.

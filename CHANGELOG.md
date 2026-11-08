@@ -12,6 +12,7 @@ saying so.
 
 ## [Unreleased]
 
+- GYST callers re-pin from v1.25.1 to v1.31.0 (GYST#327). Publishing is unchanged: both release calls publish only from a `push` of a `v*` tag, which is what the new `allowed-publish-events: push` and `require-tag-ref: true` defaults allow. Release asset names (`hammunition_hill-<version>-py3-none-any.whl`, `hammunition_hill-<version>.tar.gz`, `hammunition-hill_<version>_all.deb`) meet the artifact naming policy.
 - `CI`: pytest sets `asyncio_default_fixture_loop_scope = "function"` explicitly. pytest-asyncio 1.x warns when it is unset, and `-W error::DeprecationWarning` turned that into an INTERNALERROR (exit 3) before any test ran. The warnings-as-errors flag is unchanged (Renegade-Penguin/hammunition-hill#134).
 - `Fix`: the NOAA scales source treated a `Scale` of `1e999` (infinity once parsed) as a crash; it now reads as 0 like any other unreadable value. Found by the weekly fuzz run (Renegade-Penguin/hammunition-hill#134).
 - `Project sync`: issues opened, closed or reopened here reach the suite board through GYST's `project-sync.yml`, with a weekly reconcile (Hammunition #362). No pull-request trigger, so `tests/test_workflows.py` still forbids `pull_request_target`; the one new write is the caller's `id-token` for Doppler.

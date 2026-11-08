@@ -12,6 +12,7 @@ saying so.
 
 ## [Unreleased]
 
+- GYST callers re-pin from v1.25.1 to v1.31.0 (GYST#327). Publishing is unchanged: both release calls publish only from a `push` of a `v*` tag, which is what the new `allowed-publish-events: push` and `require-tag-ref: true` defaults allow. Release asset names (`hammunition_hill-<version>-py3-none-any.whl`, `hammunition_hill-<version>.tar.gz`, `hammunition-hill_<version>_all.deb`) meet the artifact naming policy.
 - `Project sync`: issues opened, closed or reopened here reach the suite board through GYST's `project-sync.yml`, with a weekly reconcile (Hammunition #362). No pull-request trigger, so `tests/test_workflows.py` still forbids `pull_request_target`; the one new write is the caller's `id-token` for Doppler.
 - The project moved from the `ChiefGyk3D` user to the `Renegade-Penguin` organization (Hammunition #359, epic #357): every suite repository URL, badge and link now points at the organization.
 - GYST callers to v1.12.0 (every input they pass exists in v1.12.0; v1.11.0 to v1.12.0 changed only `project-sync.yml`).

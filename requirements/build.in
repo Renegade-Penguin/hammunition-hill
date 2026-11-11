@@ -1,2 +1,2 @@
 build
-setuptools>=68
+setuptools>=84.2.1

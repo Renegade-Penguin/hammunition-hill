@@ -25,7 +25,7 @@
 # from requirements/ (compiled with `uv pip compile --generate-hashes`; the
 # command is the first lines of each lock). Dependabot moves the digest and the
 # lock files.
-FROM python:3.13-slim@sha256:3dd7cc108ec1493442514f5c2a871af6af0ec31d768ff6e378a93340c3b3db5f AS build
+FROM python:3.15-slim@sha256:65a65fc7b30b06cb6df4930fd4650697cb23f4c2698ab81fc87e4b031bc36928 AS build
 WORKDIR /src
 COPY requirements/build.txt ./requirements/build.txt
 RUN pip install --no-cache-dir --require-hashes -r requirements/build.txt
@@ -34,7 +34,7 @@ COPY src ./src
 COPY web ./web
 RUN python -m build --no-isolation --wheel -o /dist
 
-FROM python:3.13-slim@sha256:3dd7cc108ec1493442514f5c2a871af6af0ec31d768ff6e378a93340c3b3db5f
+FROM python:3.15-slim@sha256:65a65fc7b30b06cb6df4930fd4650697cb23f4c2698ab81fc87e4b031bc36928
 # The wheel carries web/ and the question pools; nothing else from the
 # repository is needed at runtime. Dependencies (sgp4 included) come from the
 # hash-checked lock, the wheel itself without a second resolution.
